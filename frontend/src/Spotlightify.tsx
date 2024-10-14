@@ -7,7 +7,7 @@ import useAction from "./hooks/useAction";
 import useCommand from "./hooks/useCommand";
 import useSuggestion from "./hooks/useSuggestion";
 import useDebounce from "./hooks/useDebounce";
-import { Hide, WindowSetSize } from "../wailsjs/runtime/runtime";
+import { Quit, WindowSetSize } from "../wailsjs/runtime/runtime";
 import { useSpotlightify } from "./hooks/useSpotlightify";
 import useAuthListeners from "./hooks/useAuthListeners";
 import useCheckAuth from "./hooks/useCheckAuth";
@@ -44,7 +44,7 @@ function Spotlightify() {
   useEffect(() => {
     const onBlur = () => {
       if (!state.activeCommand?.options?.keepPromptOpen) {
-        Hide();
+        Quit();
         actions.batchActions([
           { type: "CLEAR_COMMANDS" },
           { type: "SET_PROMPT_INPUT", payload: "" },

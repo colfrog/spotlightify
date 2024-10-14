@@ -1,6 +1,6 @@
 import BaseCommand from "./baseCommand";
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import { Pause } from "../../../wailsjs/go/backend/Backend";
 import { HandleGenericError } from "./utils";
@@ -24,10 +24,10 @@ class PauseCommand extends BaseCommand {
       icon: Icon.Pause,
       id: this.id,
       action: async (actions) => {
-        Hide();
         actions.resetPrompt();
         try {
           await Pause();
+          Quit();
         } catch (e) {
           HandleGenericError("Pause", e, actions.setSuggestionList);
         }

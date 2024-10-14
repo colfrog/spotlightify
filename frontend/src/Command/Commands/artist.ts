@@ -1,7 +1,7 @@
 import BaseCommand from "./baseCommand";
 import { Suggestion, SuggestionList } from "../../types/command";
 import Icon from "../../types/icons";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import icons from "../../types/icons";
 import { spotify } from "../../../wailsjs/go/models";
 import {
@@ -72,10 +72,10 @@ class ArtistCommand extends BaseCommand {
         icon: artist.images[2].url ?? icons.Artist,
         id: artist.id,
         action: async (actions) => {
-          Hide();
           actions.resetPrompt();
           try {
             await PlayArtistsTopTracks(artist.id);
+	    Quit();
           } catch (e) {
             actions.setSuggestionList({
               items: [

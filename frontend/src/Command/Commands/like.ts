@@ -1,5 +1,5 @@
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import {
   IsCurrentSongLiked,
@@ -53,13 +53,12 @@ class LikeCommand extends BaseCommand {
       icon: isCurrentSongLiked ? Icon.Heart : Icon.HeartNoFill,
       id: this.id,
       action: async (actions) => {
-        Hide();
         actions.resetPrompt();
         try {
-          Hide();
           await LikeCurrentSong(!isCurrentSongLiked);
           queryClient.invalidateQueries({ queryKey: [isCurrentSongLikedKey] });
           actions.resetPrompt();
+	  Quit();
         } catch (e) {
           HandleGenericError("Like Track", e, actions.setSuggestionList);
         }

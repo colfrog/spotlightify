@@ -133,7 +133,7 @@ class AuthenticateCommand extends BaseCommand {
         icon: Icon.Exit,
         id: "exit-auth-menu",
         action: async (actions) => {
-          Hide();
+          Quit();
           actions.resetPrompt();
           try {
             await Quit();

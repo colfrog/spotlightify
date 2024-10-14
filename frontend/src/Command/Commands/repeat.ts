@@ -1,5 +1,5 @@
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import {
   ChangeRepeatState,
@@ -28,11 +28,11 @@ class RepeatCommand extends BaseCommand {
       icon: Icon.Repeat,
       id: "repeat-off",
       action: async (actions) => {
-        Hide();
         try {
           await ChangeRepeatState("off");
           queryClient.invalidateQueries({ queryKey: [repeatKey] });
           actions.resetPrompt();
+          Quit();
         } catch (e) {
           HandleGenericError("Repeat Off", e, actions.setSuggestionList);
         }
@@ -46,11 +46,11 @@ class RepeatCommand extends BaseCommand {
       icon: Icon.Repeat,
       id: "repeat-context",
       action: async (actions) => {
-        Hide();
         try {
           await ChangeRepeatState("context");
           queryClient.invalidateQueries({ queryKey: [repeatKey] });
           actions.resetPrompt();
+          Quit();
         } catch (e) {
           HandleGenericError("Repeat Context", e, actions.setSuggestionList);
         }
@@ -64,7 +64,7 @@ class RepeatCommand extends BaseCommand {
       icon: Icon.Repeat,
       id: "repeat-track",
       action: async (actions) => {
-        Hide();
+        Quit();
         try {
           await ChangeRepeatState("track");
           queryClient.invalidateQueries({ queryKey: [repeatKey] });

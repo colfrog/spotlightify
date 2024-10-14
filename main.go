@@ -46,7 +46,7 @@ func main() {
 		Height:            constants.Height,
 		AlwaysOnTop:       true,
 		DisableResize:     true,
-		HideWindowOnClose: true,
+		HideWindowOnClose: false,
 		Assets:            assets,
 		BackgroundColour:  &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		OnStartup:         backend.Startup,

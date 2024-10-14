@@ -6,7 +6,7 @@ import {
   PlayPlaylist,
   ShowWindow,
 } from "../../../wailsjs/go/backend/Backend";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import icons from "../../types/icons";
 import { spotify } from "../../../wailsjs/go/models";
 class PlaylistCommand extends BaseCommand {
@@ -71,10 +71,10 @@ class PlaylistCommand extends BaseCommand {
         icon: playlist.images[0].url ?? icons.Playlist,
         id: playlist.id,
         action: async (actions) => {
-          Hide();
           actions.resetPrompt();
           try {
             await PlayPlaylist(playlist.uri);
+	    Quit();
           } catch (e) {
             actions.setSuggestionList({
               items: [

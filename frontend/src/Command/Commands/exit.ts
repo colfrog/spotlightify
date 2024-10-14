@@ -1,5 +1,5 @@
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide, Quit } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import { HandleGenericError } from "./utils";
 import BaseCommand from "./baseCommand";
@@ -23,7 +23,7 @@ class ExitCommand extends BaseCommand {
       icon: Icon.Exit,
       id: this.id,
       action: async (actions) => {
-        Hide();
+        Quit();
         actions.resetPrompt();
         try {
           await Quit();

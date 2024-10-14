@@ -6,7 +6,7 @@ import {
   QueueTrack,
   ShowWindow,
 } from "../../../wailsjs/go/backend/Backend";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import icons from "../../types/icons";
 import { spotify } from "../../../wailsjs/go/models";
 import { CombinedArtistsString } from "./utils";
@@ -73,10 +73,10 @@ class PlayCommand extends BaseCommand {
         icon: track.album.images[2].url ?? icons.Track,
         id: track.id,
         action: async (actions) => {
-          Hide();
           actions.resetPrompt();
           try {
             await QueueTrack(track.id);
+            Quit();
           } catch (e) {
             actions.setSuggestionList({
               items: [

@@ -6,7 +6,7 @@ import {
   PlayTrack,
   ShowWindow,
 } from "../../../wailsjs/go/backend/Backend";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import icons from "../../types/icons";
 import { spotify } from "../../../wailsjs/go/models";
 import { CombinedArtistsString } from "./utils";
@@ -73,10 +73,10 @@ class PlayCommand extends BaseCommand {
         icon: track.album.images[2].url ?? icons.Track,
         id: track.id,
         action: async (actions) => {
-          Hide();
           actions.resetPrompt();
           try {
             await PlayTrack(track.uri);
+            Quit();
           } catch (e) {
             actions.setSuggestionList({
               items: [
@@ -90,7 +90,7 @@ class PlayCommand extends BaseCommand {
             });
             ShowWindow();
           }
-          return Promise.resolve();
+          Promise.resolve();
         },
       });
     });

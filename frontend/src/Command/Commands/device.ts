@@ -1,5 +1,5 @@
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import {
   GetDevices,
@@ -96,11 +96,11 @@ class DeviceCommand extends BaseCommand {
         icon: DeviceIconSelector(device.type),
         id: device.id,
         action: async (actions) => {
-          Hide();
           actions.resetPrompt();
           try {
             await SetActiveDevice(device.id);
             queryClient.invalidateQueries({ queryKey: [GetDevicesKey] });
+	    Quit();
           } catch (e) {
             HandleGenericError("Pause", e, actions.setSuggestionList);
           }

@@ -1,5 +1,5 @@
 import { Suggestion, SuggestionList } from "../../types/command";
-import { Hide } from "../../../wailsjs/runtime";
+import { Quit } from "../../../wailsjs/runtime";
 import Icon from "../../types/icons";
 import { Resume } from "../../../wailsjs/go/backend/Backend";
 import { HandleGenericError } from "./utils";
@@ -24,10 +24,10 @@ class ResumeCommand extends BaseCommand {
       icon: Icon.Play,
       id: this.id,
       action: async (actions) => {
-        Hide();
         actions.resetPrompt();
         try {
           await Resume();
+	  Quit();
         } catch (e) {
           HandleGenericError("Resume", e, actions.setSuggestionList);
         }
